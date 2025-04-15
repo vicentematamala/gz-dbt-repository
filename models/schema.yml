@@ -1,9 +1,23 @@
-
 version: 2
-
 sources:
- - name: gz_raw_data
-   tables:
-     - name: raw_gz_sales
-     - name: raw_gz_product
-     - name: raw_gz_ship
+  - name: gz_raw_data
+    tables:
+      - name: raw_gz_sales
+      - name: raw_gz_product
+        description: products of Greenweez / we have on row per product_id the purchase price
+        columns:
+          - name: products_id
+            description: product distinct identificator
+            tests:
+              - unique
+              - not_null
+          - name: purchse_price
+            description: cost per product
+      - name: raw_gz_ship
+        description: revenue operational cost by order
+        columns:
+          - name: orders_id
+            description: order identifier
+            tests:
+              - unique
+              - not_null
